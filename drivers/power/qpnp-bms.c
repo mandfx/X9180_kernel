@@ -96,7 +96,6 @@
 #define QPNP_BMS_DEV_NAME "qcom,qpnp-bms"
 
 #ifdef CONFIG_ZTEMT_CHARGE
-//打开调试接口
 //#undef pr_debug
 //#define pr_debug   pr_info
 
@@ -1266,7 +1265,6 @@ static int calculate_cc(struct qpnp_bms_chip *chip, int64_t cc,
 					- calibration.offset_raw);
 	cc_pvh = cc_uv_to_pvh(cc_voltage_uv);
 	cc_uah = div_s64(cc_pvh, chip->r_sense_uohm);
-	//补偿
 	rc = qpnp_iadc_comp_result(chip->iadc_dev, &cc_uah);
 	if (rc)
 		pr_debug("error compensation failed: %d\n", rc);
@@ -3746,7 +3744,6 @@ static int set_battery_data(struct qpnp_bms_chip *chip)
 
 /*
   CONFIG_ZTEMT_CHARGE
-   读取battery-data 数据==这里暂时不用dts中的配置信息。
 */
 		node = of_find_node_by_name(chip->spmi->dev.of_node,
 				"qcom,battery-data");
