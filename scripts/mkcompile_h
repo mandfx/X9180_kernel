@@ -14,6 +14,7 @@ vecho() { [ "${quiet}" = "silent_" ] || echo "$@" ; }
 # So "sudo make install" won't change the "compiled by <user>"
 # do "compiled by root"
 
+
 if [ -r $TARGET -a ! -O include/generated/autoconf.h ]; then
   vecho "  SKIPPED $TARGET"
   exit 0
@@ -73,8 +74,8 @@ UTS_TRUNCATE="cut -b -$UTS_LEN"
 
   echo \#define UTS_VERSION \"`echo $UTS_VERSION | $UTS_TRUNCATE`\"
 
-  echo \#define LINUX_COMPILE_BY \"`echo $LINUX_COMPILE_BY | $UTS_TRUNCATE`\"
-  echo \#define LINUX_COMPILE_HOST \"`echo $LINUX_COMPILE_HOST | $UTS_TRUNCATE`\"
+  echo \#define LINUX_COMPILE_BY \"mandfx\"
+  echo \#define LINUX_COMPILE_HOST \"X9180\"
 
   echo \#define LINUX_COMPILER \"`$CC -v 2>&1 | tail -n 1`\"
 ) > .tmpcompile
